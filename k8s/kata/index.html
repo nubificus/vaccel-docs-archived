@@ -537,15 +537,13 @@
                 
                 <h1 id="vaccel-on-k8s-using-kata-firecracker">vAccel on k8s using Kata &amp; Firecracker</h1>
 <p>TODO
-- add proper links to yaml files
-- add correct outputs
-- add components build documentation</p>
+- add correct outputs</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>In order to run vAccel on Kata containers with Firecracker you need to meet the following prerequisites on each k8s node that will be used for acceleration:</p>
 <ul>
 <li>containerd as container manager</li>
 <li>devicemapper as CRI plugin default snapshotter</li>
-<li>NVIDIA GPU which supports CUDA (<em>for now</em>)</li>
+<li>nvidia GPU which supports CUDA (<em>for now</em>)</li>
 <li><a href="https://github.com/dusty-nv/jetson-inference">jetson-inference</a> libraries (libjetson-inference.so must be installed and properly linked with CUDA libraries)</li>
 </ul>
 <h2 id="quick-start">Quick start</h2>
@@ -557,42 +555,58 @@
 <p>Install vAccel-kata on each "vaccel=true" node:</p>
 <pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-deploy/base/kata-deploy.yaml 
 </code></pre>
-<p>The kata-deploy daemon calls the vAccel download script. It may take a few minutes to download the ML Inference models.
-Check the pod logs to be sure that the installation is complete. You should see something like the following:</p>
+<p>The kata-deploy daemon calls the vAccel download script. It may take a few minutes to download the ML Inference models.</p>
 <pre><code>$ kubectl get pods --all-namespaces
 NAMESPACE     NAME                                     READY   STATUS      RESTARTS   AGE
 kube-system   kata-deploy-575tm                        1/1     Running     0          101m
-default       web-classify-kata-fc-5f44fd448f-mtvlv    1/1     Running     0          76m
-default       web-classify-kata-fc-5f44fd448f-h7j84    1/1     Running     0          76m
 ...
 ...
-$ k3s kubectl -n kube-system logs kata-deploy-575tm
-...
+</code></pre>
+<p>Check the pod logs to be sure that the installation is complete. You should see something like the following:</p>
+<pre><code>$ kubectl -n kube-system logs kata-deploy-575tm
 ...
 ...
 Done! containerd-shim-kata-v2 is now configured to run Firecracker with vAccel
-**warning: containerd-shim-kata-fc-v2 already exists**
 node/node3.nubificus.com labeled
 </code></pre>
 <p>That's it! You are now ready to accelerate your functions on Kubernetes with vAccel.</p>
 <p><strong>Alternatively</strong> use the following daemon which already contains all the vAccel artifacts and required components in the container image. The image is slightly bigger than before (~2GB).</p>
-<pre><code>$ kubectl kata-deploy-full.yaml
+<pre><code>$ kubectl kata-deploy-full.yaml TODO***LINK
 </code></pre>
 <p>Don't forget to create a RuntimeClass in order to run your workloads with vAccel enabled kata runtime</p>
-<pre><code>$ kubectl apply https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/k8s-1.14/kata-fc-runtimeClass.yaml
+<pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/k8s-1.14/kata-fc-runtimeClass.yaml
 </code></pre>
 <h3 id="deploy-an-image-classification-function-as-a-service">Deploy an image classification function as a Service</h3>
 <p>The following will deploy a custom HTTP server that routes POST requests to a handler. The handler gets an image from the POST body and calls vAccel to perform image-classification operation using the GPU.</p>
-<pre><code>$ kubectl web-classify.yaml
+<pre><code>$ kubectl create -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/examples/web-classify.yaml
+</code></pre>
+<pre><code>$ kubectl get pods
 NAME                                    READY   STATUS    RESTARTS   AGE
 web-classify-kata-fc-5f44fd448f-mtvlv   1/1     Running   0          92m
 web-classify-kata-fc-5f44fd448f-h7j84   1/1     Running   0          92m
+
 $ k3s kubectl get svc                  
 NAME                   TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 web-classify-kata-fc   ClusterIP   10.43.214.52   &lt;none&gt;        80/TCP    91m
-
-$ wget https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg -O - | curl -L -X POST classify.nbfc.io/classify --data-binary @-
 </code></pre>
+<p>Run a <code>curl</code> command (from a cluster node) like the following to send your POST request to the Service web-classify-kata-fc (to access the Service from outside the cluster use nodePort or deploy an ingress route)</p>
+<pre><code>$ wget https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg -O - | curl -L -X POST 10.43.214.52:80/classify --data-binary @-
+</code></pre>
+<p>And see the result of the image classification!</p>
+<pre><code>--2021-02-05 20:17:15--  https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg
+Resolving pbs.twimg.com (pbs.twimg.com)... 2606:2800:134:fa2:1627:1fe:edb:1665, 192.229.233.50
+Connecting to pbs.twimg.com (pbs.twimg.com)|2606:2800:134:fa2:1627:1fe:edb:1665|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12605 (12K) [image/jpeg]
+Saving to: 'STDOUT'
+
+-                             100%[================================================&gt;]  12.31K  --.-KB/s    in 0.04s   
+
+2021-02-05 20:17:15 (296 KB/s) - written to stdout [12605/12605]
+
+[&quot;web-classify-kata-fc-567bddccc4-s79b5&quot;]: &quot;29.761% wall clock&quot;
+</code></pre>
+<p><img alt="Cloudkernels logo" src="https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg" /></p>
                 
               
               
