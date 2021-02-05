@@ -14,7 +14,7 @@
     
     
       
-        <title>Running a simple example - vAccel</title>
+        <title>Vaccelrt - vAccel</title>
       
     
     
@@ -57,11 +57,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#running-a-simple-example" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -90,7 +85,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Running a simple example
+              Vaccelrt
             
           </span>
         </div>
@@ -222,11 +217,18 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../vaccelrt/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Vaccelrt
       </a>
+      
     </li>
   
 
@@ -298,56 +300,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Running a simple example
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../run/" class="md-nav__link">
         Running a simple example
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#building-a-vaccel-application" class="md-nav__link">
-    Building a vaccel application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-the-example" class="md-nav__link">
-    Running the example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -451,93 +408,15 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#building-a-vaccel-application" class="md-nav__link">
-    Building a vaccel application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-the-example" class="md-nav__link">
-    Running the example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                <h1 id="running-a-simple-example">Running a simple example</h1>
-<h2 id="building-a-vaccel-application">Building a vaccel application</h2>
-<p>We will use an example of image classification which can be found under the
-<a href="https://github.com/cloudkernels/vaccelrt/tree/master/examples">examples</a> folder
-of the vAccel runtime <a href="https://github.com/cloudkernels/vaccelrt">repo</a>.</p>
-<p>You can build the example using the CMake of the repo:</p>
-<pre><code class="language-bash">$ mkdir build
-$ cd build
-$ cmake -DBUILD_EXAMPLES=ON ..
-$ make
-$ ls examples
-classify  CMakeFiles  cmake_install.cmake  Makefile
-</code></pre>
-<p>If, instead, you want to build by hand you need to define the include and library paths (if they are not
-in your respective default search paths) and also link with <code>dl</code>:</p>
-<pre><code>$ cd ../examples
-$ gcc -Wall -Wextra -I${HOME}/.local/include -L${HOME}/.local/lib classification.c -o classify -lvaccel -ldl
-$ ls
-classification.c  classify  CMakeLists.txt  images
-</code></pre>
-<h2 id="running-the-example">Running the example</h2>
-<p>Having built our <code>classify</code> example, we need to prepare the vaccel environment for it to run:</p>
-<ol>
-<li>Define the path to <code>libvaccel.so</code> (if not in the default search path):</li>
-</ol>
-<pre><code class="language-bash">export LD_LIBRARY_PATH=${HOME}/.local/lib
-</code></pre>
-<ol>
-<li>Define the backend plugin to use for our application.</li>
-</ol>
-<p>In this example, we will use the jetson plugin which implements the image classification operation using the Jetson Inference
-framework which uses TensorRT.</p>
-<pre><code class="language-bash">export VACCEL_BACKENDS=${HOME}/.local/lib/libvaccel-jetson.so
-</code></pre>
-<p>Finally, the classification application needs the imagent models in the current working path.
-(TODO: Find link to download those). Once you have these, you can do:</p>
-<pre><code class="language-bash">$ ls 
-classify  images  networks
-$ VACCEL_IMAGENET_NETWORKS=$(pwd) ./classify images/banana_0.jpg 1
-Initialized session with id: 1
-Image size: 79281B
-classification tags: 99.902% banana
-</code></pre>
+                  <h1>Vaccelrt</h1>
+                
+                
                 
               
               
@@ -556,7 +435,7 @@ classification tags: 99.902% banana
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../coral/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../quickstart/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -565,19 +444,19 @@ classification tags: 99.902% banana
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Google Coral TPU
+                Quickstart
               </div>
             </div>
           </a>
         
         
-          <a href="../k8s/kata/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../jetson/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                vAccel on k8s using Kata & Firecracker
+                Jetson-inference
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
