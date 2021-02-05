@@ -10,7 +10,7 @@
       
       
       <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -205,26 +205,6 @@
     vAccel design
   </a>
   
-    <nav class="md-nav" aria-label="vAccel design">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hardware-acceleration-in-virtual-machines" class="md-nav__link">
-    Hardware acceleration in Virtual Machines
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
-    Performance
-  </a>
-  
 </li>
       
     </ul>
@@ -281,7 +261,7 @@
   
     <li class="md-nav__item">
       <a href="vaccelrt/" class="md-nav__link">
-        vAccelRT runtime
+        Vaccelrt
       </a>
     </li>
   
@@ -326,8 +306,8 @@
   
   
     <li class="md-nav__item">
-      <a href="virtio/" class="md-nav__link">
-        virtio-accel Plugin
+      <a href="virtio.md" class="md-nav__link">
+        None
       </a>
     </li>
   
@@ -484,26 +464,6 @@
     vAccel design
   </a>
   
-    <nav class="md-nav" aria-label="vAccel design">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#hardware-acceleration-in-virtual-machines" class="md-nav__link">
-    Hardware acceleration in Virtual Machines
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
-    Performance
-  </a>
-  
 </li>
       
     </ul>
@@ -539,54 +499,17 @@ acceleratable functions from insde the VM to the host, incuring minimum overhead
 at scale.</li>
 </ol>
 <h2 id="vaccel-design">vAccel design</h2>
+<p>The core component of vAccel is the vaccel runtime (vaccelrt). vaccelrt is
+designed in a modular way. The core runtime exposes the vAccel API to user
+applications and dispatches requests to one of many <em>backend plugins</em>, which
+are the components that implement the vAccel API on a particular hardware
+accelerator.</p>
 <figure>
   <img src="img/vaccel.svg" width="600" align=left />
   <figcaption>vAccel runtime stack</figcaption>
 </figure>
 
-<p>The core component of vAccel is the vaccel runtime (vAccelRT). vAccelRT is
-designed in a modular way. The core runtime exposes the vAccel API to user
-applications and dispatches requests to one of many <em>backend plugins</em>, which
-are the components that implement the vAccel API on a particular hardware
-accelerator.</p>
-<p>The user application links against the core runtime library and the plugin
-modules are loaded at runtime by the runtime. This workflow decouples the
-application from the hardware accelerator-specific parts of the stack, allowing
-for seamless migration of the same binary to different platforms with different
-accelerator capabilities, without the need to recomplile user code.</p>
-<p>Currently, we support acceleration plugins for:</p>
-<ol>
-<li><a href="https://github.com/dusty-nv/jetson-inference">Jetson inference</a> framework,
-for acceleration of ML operation on Nvidia GPUs.</li>
-<li><a href="https://www.coral.ai/">Google Coral TPU</a>, for acceleration on Coral TPUs.</li>
-</ol>
-<h3 id="hardware-acceleration-in-virtual-machines">Hardware acceleration in Virtual Machines</h3>
-<p>Hardware acceleration for virtualized guests is a difficult problem to tackle.
-Typical solutions involve device pass-through or paravirtual drivers that
-expose hardware semantics inside the guest. vAccel differentiates itself from
-these approaches by exposing coarse grain "acceleratable" functions in the guest
-over a custom transport layer.</p>
-<p>The semantics of the transport layer are hidden from the programmer. A vAccel
-application that runs on baremetal with an Nvidia GPU can run <em>as is</em> inside
-a VM using our appropriate <em>VirtIO</em> backend plugin. </p>
-<p>We have implemented the necessary parts for our VirtIO driver in our forks of
-<a href="https://github.com/cloudkernels/qemu-vaccel">QEMU</a> and
-<a href="https://github.com/cloudkernels/firecracker">Firecracker</a> hypervisors.</p>
-<h2 id="performance">Performance</h2>
-<figure>
-  <img src="img/perf_bm.svg" width="600" align=left />
-  <figcaption>vAccel performance overhead of VM execution compared to bare-metal</figcaption>
-</figure>
-
-<p>The above figure depicts a performance comparison of the image classification
-operation of a vAccel application running inside a Firecracker VM using the
-Jetson inference plugin comparing to an execution of the same operation using
-the Jetson inference framework natively without any vAccel code, running directly
-on the host.</p>
-<p>The performance overhead of our stack is less that 5% of the native execution
-time across a range of image sizes.</p>
-<p>We will be updating these performance results regularly with more operations and
-plugins.</p>
+<p>The user application links against the core runtime </p>
                 
               
               
@@ -639,8 +562,8 @@ plugins.</p>
       
     </div>
     
-      <script src="assets/javascripts/vendor.53cc9318.min.js"></script>
-      <script src="assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
