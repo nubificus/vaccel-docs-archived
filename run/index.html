@@ -531,18 +531,18 @@
 <a href="https://github.com/cloudkernels/vaccelrt/tree/master/examples">examples</a> folder
 of the vAccel runtime <a href="https://github.com/cloudkernels/vaccelrt">repo</a>.</p>
 <p>You can build the example using the CMake of the repo:</p>
-<pre><code class="language-bash">$ mkdir build
-$ cd build
-$ cmake -DBUILD_EXAMPLES=ON ..
-$ make
-$ ls examples
+<pre><code class="language-bash">mkdir build
+cd build
+cmake -DBUILD_EXAMPLES=ON ..
+make
+ls examples
 classify  CMakeFiles  cmake_install.cmake  Makefile
 </code></pre>
 <p>If, instead, you want to build by hand you need to define the include and library paths (if they are not
 in your respective default search paths) and also link with <code>dl</code>:</p>
-<pre><code>$ cd ../examples
-$ gcc -Wall -Wextra -I${HOME}/.local/include -L${HOME}/.local/lib classification.c -o classify -lvaccel -ldl
-$ ls
+<pre><code>cd ../examples
+gcc -Wall -Wextra -I${HOME}/.local/include -L${HOME}/.local/lib classification.c -o classify -lvaccel -ldl
+ls
 classification.c  classify  CMakeLists.txt  images
 </code></pre>
 <h2 id="running-the-example">Running the example</h2>
@@ -561,9 +561,10 @@ framework which uses TensorRT.</p>
 </code></pre>
 <p>Finally, the classification application needs the imagent models in the current working path.
 (TODO: Find link to download those). Once you have these, you can do:</p>
-<pre><code class="language-bash">$ ls 
+<pre><code class="language-bash">ls 
 classify  images  networks
-$ VACCEL_IMAGENET_NETWORKS=$(pwd) ./classify images/banana_0.jpg 1
+
+VACCEL_IMAGENET_NETWORKS=$(pwd) ./classify images/banana_0.jpg 1
 Initialized session with id: 1
 Image size: 79281B
 classification tags: 99.902% banana
