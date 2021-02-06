@@ -308,7 +308,7 @@
   
     <li class="md-nav__item">
       <a href="../vaccelrt/" class="md-nav__link">
-        Building the vAccelRT
+        Building the vAccel Runtime
       </a>
     </li>
   
@@ -405,7 +405,7 @@
   
     <li class="md-nav__item">
       <a href="../kata-vaccel/" class="md-nav__link">
-        vAccel on Kata-containers
+        vAccel on kata containers
       </a>
     </li>
   
@@ -593,8 +593,8 @@
 machine with an Nvidia GPU. We will build the vAccel stack and run a simple
 application both directly on a Linux host and inside a Firecracker VM.</p>
 <h2 id="building-the-vaccel-stack">Building the vAccel stack</h2>
-<p>The <a href="https://github.com/cloudkernels/vaccel">vAccel</a> is a meta repo which keeps
-track of all the individual components needed for running a vAccel application.</p>
+<p>The <a href="https://github.com/cloudkernels/vaccel">vAccel</a> repo serves as a means to
+keep track of all the individual components needed to run a vAccel application.</p>
 <pre><code class="language-sh">git clone https://github.com/cloudkernels/vaccel
 cd vaccel
 </code></pre>
@@ -614,8 +614,10 @@ you can just run:</p>
 <pre><code class="language-sh">./build.sh all
 </code></pre>
 <p>Note: while building the rootfs, this script will require your sudo password.</p>
-<p>If a jetson-inference setup is not available you can use our <code>nubificus/vaccel-deps</code>
-container image to build the necessary components, by running:</p>
+<p>If a jetson-inference setup is not available you can either follow <a href="/jetson">this
+guide</a> to build the vAccel jetson plugin and install the prerequisites
+on your host machine, or use our <code>nubificus/vaccel-deps</code> container image to
+build the necessary components, by running:</p>
 <pre><code class="language-sh">./build.sh -c all
 </code></pre>
 <h2 id="running-the-application">Running the application</h2>
@@ -653,7 +655,7 @@ classification tags: 60.498% malamute, malemute, Alaskan malamute
 <p><strong>Note</strong>: The first time your run a classification with a model jetson-inference
 is performing some JIT steps to optimize the classification result, so you can
 expect increased execution time. The output of this operation is cached for
-subsequent executions</p>
+subsequent executions.</p>
 <h4 id="running-in-a-firecracker-vm">Running in a Firecracker VM</h4>
 <p><code>build.sh</code> created for us a rootfs image and a vmlinux kernel for booting a
 Firecracker VM. The rootfs has pre-installed the <code>vAccel</code> libraries, the example
@@ -716,7 +718,7 @@ classification tags: 60.498% malamute, malemute, Alaskan malamute
 can use our <code>nubificus/vaccel-deps</code> Docker image to run a vAccel application.</p>
 <p>You need to install the Nvidia container runtime following the instructions
 <a href="https://github.com/NVIDIA/nvidia-container-runtime">here</a>, which allows you
-to pass to expose Nvidia GPU devices inside Docker containers.</p>
+to use NVIDIA GPU devices inside Docker containers.</p>
 <p>Once, you're all setup with the nvidia runtime you can run the application:</p>
 <pre><code class="language-sh">docker run --runtime=nvidia --rm --gpus all -v $(pwd):$(pwd) -w $(pwd) \
   -e LD_LIBRARY_PATH=$(pwd)/lib \
@@ -787,7 +789,7 @@ export VACCEL_BACKENDS=/opt/vaccel/lib/libvaccel-virtio.so
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Building the vAccelRT
+                Building the vAccel Runtime
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
