@@ -552,6 +552,9 @@
 <p>First label each node where vAccel-kata should be deployed:</p>
 <pre><code>$ kubectl label nodes &lt;your-node-name&gt; vaccel=true
 </code></pre>
+<p>Create service account and cluster role for the kata-deploy daemon</p>
+<pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-rbac/base/kata-rbac.yaml
+</code></pre>
 <p>Install vAccel-kata on each "vaccel=true" node:</p>
 <pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-deploy/base/kata-deploy.yaml 
 </code></pre>
@@ -569,9 +572,9 @@ kube-system   kata-deploy-575tm                        1/1     Running     0    
 Done! containerd-shim-kata-v2 is now configured to run Firecracker with vAccel
 node/node3.nubificus.com labeled
 </code></pre>
-<p>That's it! You are now ready to accelerate your functions on Kubernetes with vAccel.</p>
-<p><strong>Alternatively</strong> use the following daemon which already contains all the vAccel artifacts and required components in the container image. The image is slightly bigger than before (~2GB).</p>
-<pre><code>$ kubectl kata-deploy-full.yaml TODO***LINK
+<p><strong>That's it! You are now ready to accelerate your functions on Kubernetes with vAccel.</strong></p>
+<p><em>Alternatively</em> use the following daemon which already contains all the vAccel artifacts and required components in the container image. The image is slightly bigger than before (~2GB).</p>
+<pre><code>$ kubectl apply -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/full?ref=vaccel-dev
 </code></pre>
 <p>Don't forget to create a RuntimeClass in order to run your workloads with vAccel enabled kata runtime</p>
 <pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/k8s-1.14/kata-fc-runtimeClass.yaml

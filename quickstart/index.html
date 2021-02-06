@@ -697,6 +697,42 @@ imagenet: shutting down...
 classification tags: 60.498% malamute, malemute, Alaskan malamute
 </code></pre>
 <h3 id="docker-execution">Docker execution</h3>
+<p>If you don't have a Jetson-inference installation available on your machine, you
+can use our <code>nubificus/vaccel-deps</code> Docker image to run a vAccel application.</p>
+<p>You need to install the Nvidia container runtime following the instructions
+<a href="https://github.com/NVIDIA/nvidia-container-runtime">here</a>, which allows you
+to pass to expose Nvidia GPU devices inside Docker containers.</p>
+<p>Once, you're all setup with the nvidia runtime you can run the application:</p>
+<pre><code class="language-sh">docker run --runtime=nvidia --rm --gpus all -v $(pwd):$(pwd) -w $(pwd) \
+  -e LD_LIBRARY_PATH=$(pwd)/lib \
+  -e VACCEL_BACKENDS=./lib/libvaccel-jetson.so \
+  -e VACCEL_IMAGENET_NETWORKS=$(pwd)/share/networks \
+  nubificus/vaccel-deps:latest \
+  ./bin/classify share/images/dog_0.jpg 1 
+</code></pre>
+<p>Similarly, we can launch a Firecracker VM inside the container. In this case,
+we need to add the <code>--privileged</code> flag to allow launching VMs inside the
+container and <code>-it</code> to be able to use the VM's console.</p>
+<pre><code class="language-sh">docker run --runtime=nvidia --rm --gpus all -v $(pwd):$(pwd) -w $(pwd) \
+  --privileged \
+  -it \
+  -e LD_LIBRARY_PATH=$(pwd)/lib \
+  -e VACCEL_BACKENDS=./lib/libvaccel-jetson.so \
+  -e VACCEL_IMAGENET_NETWORKS=$(pwd)/share/networks \
+  nubificus/vaccel-deps:latest \
+  ./bin/firecracker --api-sock fc.sock --config-file ./share/config_virtio_accel.json --seccomp-level 0
+</code></pre>
+<p>which we'll give us a console inside the VM, from which we can run our application
+the same way as we did before:</p>
+<pre><code class="language-sh"># export the library path
+export LD_LIBRARY_PATH=/opt/vaccel/lib
+
+# Tell vAccelRT to use the VirtIO plugin
+export VACCEL_BACKENDS=/opt/vaccel/lib/libvaccel-virtio.so
+
+# Launch the Firecracker VM
+/opt/vaccel/bin/classify images/dog_0.jpg 1
+</code></pre>
                 
               
               
