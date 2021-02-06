@@ -14,7 +14,7 @@
     
     
       
-        <title>vAccel on k8s using Kata & Firecracker - vAccel</title>
+        <title>vAccel on k8s using Kata-containers & Firecracker - vAccel</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vaccel-on-k8s-using-kata-firecracker" class="md-skip">
+        <a href="#vaccel-on-k8s-using-kata-containers-firecracker" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              vAccel on k8s using Kata & Firecracker
+              vAccel on k8s using Kata-containers & Firecracker
             
           </span>
         </div>
@@ -317,6 +317,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../kata-vaccel/" class="md-nav__link">
+        vAccel on Kata-containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -324,14 +339,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
       
-      <label class="md-nav__link" for="nav-4">
+      <label class="md-nav__link" for="nav-5">
         k8s
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="k8s" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="nav-5">
           <span class="md-nav__icon md-icon"></span>
           k8s
         </label>
@@ -352,12 +367,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          vAccel on k8s using Kata & Firecracker
+          vAccel on k8s using Kata-containers & Firecracker
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        vAccel on k8s using Kata & Firecracker
+        vAccel on k8s using Kata-containers & Firecracker
       </a>
       
         
@@ -432,14 +447,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
       
-      <label class="md-nav__link" for="nav-5">
+      <label class="md-nav__link" for="nav-6">
         Unikernels
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Unikernels" data-md-level="1">
-        <label class="md-nav__title" for="nav-5">
+        <label class="md-nav__title" for="nav-6">
           <span class="md-nav__icon md-icon"></span>
           Unikernels
         </label>
@@ -535,9 +550,7 @@
               
                 
                 
-                <h1 id="vaccel-on-k8s-using-kata-firecracker">vAccel on k8s using Kata &amp; Firecracker</h1>
-<p>TODO
-- add correct outputs</p>
+                <h1 id="vaccel-on-k8s-using-kata-containers-firecracker">vAccel on k8s using Kata-containers &amp; Firecracker</h1>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>In order to run vAccel on Kata containers with Firecracker you need to meet the following prerequisites on each k8s node that will be used for acceleration:</p>
 <ul>
@@ -547,9 +560,9 @@
 <li><a href="https://github.com/dusty-nv/jetson-inference">jetson-inference</a> libraries (libjetson-inference.so must be installed and properly linked with CUDA libraries)</li>
 </ul>
 <h2 id="quick-start">Quick start</h2>
-<p><sup><em>We built on</em> <a href="https://github.com/kata-containers/packaging/tree/master/kata-deploy">kata-containers/kata-deploy</a> <em>to deploy vAccel on Kata Containers. Our fork repo can be found on</em> <a href="https://github.com/cloudkernels/packaging/tree/vaccel-dev">cloudkernels/packaging</a></sub></p>
 <h3 id="deploy-vaccel-with-kata">Deploy vAccel with Kata</h3>
-<p>First label each node where vAccel-kata should be deployed:</p>
+<p><sup><em>We rely on</em> <a href="https://github.com/kata-containers/packaging/tree/master/kata-deploy">kata-containers/kata-deploy</a> <em>to create the vaccel-kata-deploy daemon. Our fork repo can be found on</em> <a href="https://github.com/cloudkernels/packaging/tree/vaccel-dev">cloudkernels/packaging</a>.<em>We are working on building a Kata Containers release with vAccel support.</em></sup></p>
+<p>Label each node where vAccel-kata should be deployed:</p>
 <pre><code>$ kubectl label nodes &lt;your-node-name&gt; vaccel=true
 </code></pre>
 <p>Create service account and cluster role for the kata-deploy daemon</p>
@@ -609,7 +622,9 @@ Saving to: 'STDOUT'
 
 [&quot;web-classify-kata-fc-567bddccc4-s79b5&quot;]: &quot;29.761% wall clock&quot;
 </code></pre>
-<p><img alt="Cloudkernels logo" src="https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg" /></p>
+<p align="center">
+  <img width="300" height="300" src="https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg">
+</p>
                 
               
               
@@ -628,7 +643,7 @@ Saving to: 'STDOUT'
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../run/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../kata-vaccel/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -637,7 +652,7 @@ Saving to: 'STDOUT'
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Running a simple example
+                vAccel on Kata-containers
               </div>
             </div>
           </a>
