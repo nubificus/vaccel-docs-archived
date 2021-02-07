@@ -14,7 +14,7 @@
     
     
       
-        <title>vAccel on AWS Firecracker micro-VMs - vAccel</title>
+        <title>Firecracker - vAccel</title>
       
     
     
@@ -91,7 +91,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              vAccel on AWS Firecracker micro-VMs
+              Firecracker
             
           </span>
         </div>
@@ -308,9 +308,38 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Firecracker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
-        vAccel on AWS Firecracker micro-VMs
+        Firecracker
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-vaccel-enabled-firecracker" class="md-nav__link">
+    Running vAccel enabled Firecracker
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -323,6 +352,18 @@
     <li class="md-nav__item">
       <a href="../run/" class="md-nav__link">
         Running a simple example
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kata-vaccel/" class="md-nav__link">
+        Kata Containers
       </a>
     </li>
   
@@ -341,33 +382,18 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../kata-vaccel/" class="md-nav__link">
-        vAccel on kata containers
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
       
-      <label class="md-nav__link" for="nav-5">
+      <label class="md-nav__link" for="nav-4">
         k8s
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="k8s" data-md-level="1">
-        <label class="md-nav__title" for="nav-5">
+        <label class="md-nav__title" for="nav-4">
           <span class="md-nav__icon md-icon"></span>
           k8s
         </label>
@@ -403,14 +429,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
       
-      <label class="md-nav__link" for="nav-6">
+      <label class="md-nav__link" for="nav-5">
         Unikernels
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Unikernels" data-md-level="1">
-        <label class="md-nav__title" for="nav-6">
+        <label class="md-nav__title" for="nav-5">
           <span class="md-nav__icon md-icon"></span>
           Unikernels
         </label>
@@ -483,6 +509,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-vaccel-enabled-firecracker" class="md-nav__link">
+    Running vAccel enabled Firecracker
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -502,7 +543,70 @@ use cases where the isolation of Virtual Machines along with efficiency
 of containers is needed.</p>
 <p>For example, <a href="https://katacontainers.io/">Kata containers</a> incorporate
 Firecracker to allow booting isolated containers with minimum overhead.</p>
-<p>We have <a href="https://github.com/cloudkernels">extended</a> </p>
+<p>We have <a href="https://github.com/cloudkernels/firecracker">extended</a> to add a new
+virtio device implementation for our <a href="/virtio">virtio-accel</a> module. Our
+implementation is on top of <code>v0.23.1</code> release of upstream Firecracker (branch
+<code>vaccel-v0.23.1</code> on our forked repo).</p>
+<h2 id="running-vaccel-enabled-firecracker">Running vAccel enabled Firecracker</h2>
+<p>Building our forked Firecracker is equivalent to building upstream Firecracker,
+with the only exception that we have to build Firecracker linking against
+standard GNU <code>libc</code>, instead of <code>musl</code>.</p>
+<pre><code class="language-sh">git clone https://github.com/cloudkernels/firecracker vaccel-v0.23.1
+./tools/devtool build -l gnu
+</code></pre>
+<p>The Firecracker binary is located under
+<code>./firecracker/build/cargo_target/x86_64-unknown-linux-gnu/debug/firecracker</code>.</p>
+<p>Now, Firecracker is launched like any other vAccel application. Additionally,
+we need to provide a configuration file for our Firecracker VM. We have extended
+the spec to include a vaccel section. Here is an example:</p>
+<pre><code>{
+    &quot;boot-source&quot;: {
+        &quot;kernel_image_path&quot;: &quot;share/vmlinux&quot;,
+        &quot;boot_args&quot;: &quot;console=ttyS0 reboot=k panic=1 pci=off loglevel=8 root=/dev/vda ip=172.42.0.2::172.42.0.1:255.255.255.0::eth0:off random.trust_cpu=on&quot;
+    },
+    &quot;drives&quot;: [
+        {
+            &quot;drive_id&quot;: &quot;rootfs&quot;,
+            &quot;path_on_host&quot;: &quot;share/rootfs.img&quot;,
+            &quot;is_root_device&quot;: true,
+            &quot;is_read_only&quot;: false
+        }
+    ],
+    &quot;network-interfaces&quot;: [
+    {
+        &quot;iface_id&quot;: &quot;eth0&quot;,
+        &quot;guest_mac&quot;: &quot;AA:FC:00:00:00:01&quot;,
+        &quot;host_dev_name&quot;: &quot;tapTestFc&quot;
+    }
+    ],
+    &quot;crypto&quot;: {
+        &quot;crypto_dev_id&quot;: &quot;vaccel0&quot;,
+        &quot;host_crypto_dev&quot;: &quot;/dev/vaccel0&quot;
+    },
+    &quot;machine-config&quot;: {
+        &quot;vcpu_count&quot;: 2,
+        &quot;mem_size_mib&quot;: 4096,
+        &quot;ht_enabled&quot;: false
+    }
+}
+
+</code></pre>
+<p>Notice the <code>crypto</code> section of the json snippet. We still call this <code>crypto</code> 
+because <code>virtio-accel</code> came about as an "extension" of the <code>virtio-crypto</code>
+device.</p>
+<p>Modify the Firecracker config to match your setup (paths to rootfs and vmlinux,
+network devices, etc) and boot your Firecracker image like:</p>
+<pre><code class="language-sh"># Set path to libvaccel
+export LD_LIBRARY_PATH=/path/to/libvaccel.so
+
+# Determine backend plugin to use
+export VACCEL_BACKENDS=/path/to/plugin/libvaccel-jetson.so
+
+# Launch a VM
+/path/to/firecracker --api-sock fc.sock --config-file your_fc_config.json --seccomp-level 0
+</code></pre>
+<p><strong>Note</strong>: We need to disable <code>seccomp</code> filters, because plugins such as <code>jetson-inference</code>
+need to use system calls that normally are not whitelisted by Firecracker.</p>
                 
               
               
