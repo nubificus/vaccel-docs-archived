@@ -10,7 +10,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.7">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -298,32 +298,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../firecracker/" class="md-nav__link">
-        Firecracker
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../run/" class="md-nav__link">
         Running a simple example
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../kata-vaccel/" class="md-nav__link">
-        Kata Containers
       </a>
     </li>
   
@@ -341,6 +317,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../kata-vaccel/" class="md-nav__link">
+        vAccel on kata containers
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -348,19 +339,31 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
       
-      <label class="md-nav__link" for="nav-4">
+      <label class="md-nav__link" for="nav-5">
         k8s
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="k8s" data-md-level="1">
-        <label class="md-nav__title" for="nav-4">
+        <label class="md-nav__title" for="nav-5">
           <span class="md-nav__icon md-icon"></span>
           k8s
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devmapper/" class="md-nav__link">
+        Devmapper
+      </a>
+    </li>
+  
+
           
             
   
@@ -426,6 +429,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cleanup-everything" class="md-nav__link">
+    Cleanup everything
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -456,14 +466,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
       
-      <label class="md-nav__link" for="nav-5">
+      <label class="md-nav__link" for="nav-6">
         Unikernels
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Unikernels" data-md-level="1">
-        <label class="md-nav__title" for="nav-5">
+        <label class="md-nav__title" for="nav-6">
           <span class="md-nav__icon md-icon"></span>
           Unikernels
         </label>
@@ -571,6 +581,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cleanup-everything" class="md-nav__link">
+    Cleanup everything
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -594,9 +611,9 @@
 <p>In order to run vAccel on Kata containers with Firecracker you need to meet the following prerequisites on each k8s node that will be used for acceleration:</p>
 <ul>
 <li>containerd as container manager</li>
-<li>devicemapper as CRI plugin default snapshotter</li>
-<li>nvidia GPU which supports CUDA (<em>for now</em>)</li>
-<li><a href="https://github.com/dusty-nv/jetson-inference">jetson-inference</a> libraries (libjetson-inference.so must be installed and properly linked with CUDA libraries)</li>
+<li>devicemapper as CRI plugin default snapshotter (<a href="/devmapper">info</a>)</li>
+<li>nvidia GPU which supports CUDA (<em>for now</em>) (<a href="/jetson">info</a>)</li>
+<li><a href="https://github.com/dusty-nv/jetson-inference">jetson-inference</a> libraries (libjetson-inference.so must be installed and properly linked with CUDA libraries) (<a href="/jetson">info</a>)</li>
 </ul>
 <h2 id="quick-start">Quick start</h2>
 <h3 id="deploy-vaccel-with-kata">Deploy vAccel with Kata</h3>
@@ -608,7 +625,11 @@
 <pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-rbac/base/kata-rbac.yaml
 </code></pre>
 <p>Install vAccel-kata on each "vaccel=true" node:</p>
-<pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-deploy/base/kata-deploy.yaml 
+<pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-deploy/base/kata-deploy.yaml
+
+# or for k3s
+
+$ k3s kubectl apply -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/k3s?ref=vaccel-dev
 </code></pre>
 <p>The kata-deploy daemon calls the vAccel download script. It may take a few minutes to download the ML Inference models.</p>
 <pre><code>$ kubectl get pods --all-namespaces
@@ -625,8 +646,12 @@ Done! containerd-shim-kata-v2 is now configured to run Firecracker with vAccel
 node/node3.nubificus.com labeled
 </code></pre>
 <p><strong>That's it! You are now ready to accelerate your functions on Kubernetes with vAccel.</strong></p>
-<p><em>Alternatively</em> use the following daemon which already contains all the vAccel artifacts and required components in the container image. The image is slightly bigger than before (~2GB).</p>
+<p><em>Alternatively</em> use the following daemon which already contains all the vAccel artifacts and required components in the container image. The image is slightly bigger than before as it already contains jetson inference models.</p>
 <pre><code>$ kubectl apply -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/full?ref=vaccel-dev
+
+# or for k3s
+
+$ k3s kubectl apply -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/full-k3s?ref=vaccel-dev
 </code></pre>
 <p>Don't forget to create a RuntimeClass in order to run your workloads with vAccel enabled kata runtime</p>
 <pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/k8s-1.14/kata-fc-runtimeClass.yaml
@@ -640,7 +665,7 @@ NAME                                    READY   STATUS    RESTARTS   AGE
 web-classify-kata-fc-5f44fd448f-mtvlv   1/1     Running   0          92m
 web-classify-kata-fc-5f44fd448f-h7j84   1/1     Running   0          92m
 
-$ k3s kubectl get svc                  
+$ kubectl get svc                  
 NAME                   TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 web-classify-kata-fc   ClusterIP   10.43.214.52   &lt;none&gt;        80/TCP    91m
 </code></pre>
@@ -664,6 +689,48 @@ Saving to: 'STDOUT'
 <p align="center">
   <img width="300" height="300" src="https://pbs.twimg.com/profile_images/1186928115571941378/1B6zKjc3_400x400.jpg">
 </p>
+
+<h3 id="cleanup-everything">Cleanup everything</h3>
+<p>Delete the web-classify-fc deployment and service:</p>
+<pre><code>$ kubectl delete -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/examples/web-classify.yaml
+</code></pre>
+<p>Delete the daemon:
+(removes artifacts from host paths /opt/vaccel &amp; /opt/kata and restores containerd configuration)</p>
+<pre><code>$ kubectl delete -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-deploy/base/kata-deploy.yaml
+
+# or for k3s
+
+$ k3s kubectl delete -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/k3s?ref=vaccel-dev
+</code></pre>
+<p>or in case you deployed the full vAccel overlay:</p>
+<pre><code>$ kubectl delete -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/full?ref=vaccel-dev
+
+# or for k3s
+
+$ k3s kubectl delete -k github.com/cloudkernels/packaging/kata-deploy/kata-deploy/overlays/full-k3s?ref=vaccel-dev
+</code></pre>
+<p>Reset the runtime and remove kata related labels from nodes:</p>
+<pre><code>$ kubectl apply -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-cleanup/base/kata-cleanup.yaml
+
+# or for k3s
+
+$ k3s kubectl apply -k github.com/cloudkernels/packaging/kata-deploy/kata-cleanup/overlays/k3s?ref=vaccel-dev
+</code></pre>
+<p>Delete the kata-fc RuntimeClass and the rbac</p>
+<pre><code>$ kubectl delete -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/k8s-1.14/kata-fc-runtimeClass.yaml
+</code></pre>
+<pre><code>$ kubectl delete -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-rbac/base/kata-rbac.yaml
+</code></pre>
+<p>Delete the cleanup daemon</p>
+<pre><code>$ kubectl delete -f https://raw.githubusercontent.com/cloudkernels/packaging/vaccel-dev/kata-deploy/kata-cleanup/base/kata-cleanup.yaml
+
+# or for k3s
+
+$ k3s kubectl delete -k github.com/cloudkernels/packaging/kata-deploy/kata-cleanup/overlays/k3s?ref=vaccel-dev
+</code></pre>
+<p>Remove <code>vaccel=true</code> from each node</p>
+<pre><code>$ kubectl label nodes &lt;your-node-name&gt; vaccel=true-
+</code></pre>
                 
               
               
@@ -682,7 +749,7 @@ Saving to: 'STDOUT'
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../kata-vaccel/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../devmapper/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -691,7 +758,7 @@ Saving to: 'STDOUT'
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Kata Containers
+                Devmapper
               </div>
             </div>
           </a>
@@ -734,8 +801,8 @@ Saving to: 'STDOUT'
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.53cc9318.min.js"></script>
-      <script src="../../assets/javascripts/bundle.e9c9f54f.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
