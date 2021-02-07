@@ -14,7 +14,7 @@
     
     
       
-        <title>Building the vAccel Runtime - vAccel</title>
+        <title>Use Cases - vAccel</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#building-the-vaccel-runtime" class="md-skip">
+        <a href="#use-cases" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Building the vAccel Runtime
+              Use Cases
             
           </span>
         </div>
@@ -198,14 +198,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
       
       <label class="md-nav__link" for="nav-3">
         User Guide
@@ -222,103 +220,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Building the vAccel Runtime
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../vaccelrt/" class="md-nav__link">
         Building the vAccel Runtime
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#vaccelrt" class="md-nav__link">
-    vAccelRT
-  </a>
-  
-    <nav class="md-nav" aria-label="vAccelRT">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#build-installation" class="md-nav__link">
-    Build &amp; Installation
-  </a>
-  
-    <nav class="md-nav" aria-label="Build &amp; Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-cloning-and-preparing-the-build-directory" class="md-nav__link">
-    1. Cloning and preparing the build directory
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-building-the-core-runtime-system" class="md-nav__link">
-    2. Building the core runtime system
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-building-the-plugins" class="md-nav__link">
-    3. Building the plugins
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#virtio-plugin-building-options" class="md-nav__link">
-    VirtIO plugin building options
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#jetson-plugin-building-options" class="md-nav__link">
-    Jetson plugin building options
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -527,11 +433,90 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../usecases/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Use Cases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Use Cases
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hw-acceleration-on-serverless-deployments" class="md-nav__link">
+    HW Acceleration on Serverless deployments
+  </a>
+  
+    <nav class="md-nav" aria-label="HW Acceleration on Serverless deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-openfaas-profile" class="md-nav__link">
+    Create a new OpenFaaS Profile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-an-image-classification-function-example" class="md-nav__link">
+    Build an image classification function example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrate-this-operation-into-a-function-for-openfaas" class="md-nav__link">
+    Integrate this operation into a function for OpenFaaS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-the-function" class="md-nav__link">
+    Deploy the function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consume-the-function" class="md-nav__link">
+    Consume the function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -561,58 +546,45 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#vaccelrt" class="md-nav__link">
-    vAccelRT
+  <a href="#hw-acceleration-on-serverless-deployments" class="md-nav__link">
+    HW Acceleration on Serverless deployments
   </a>
   
-    <nav class="md-nav" aria-label="vAccelRT">
+    <nav class="md-nav" aria-label="HW Acceleration on Serverless deployments">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#build-installation" class="md-nav__link">
-    Build &amp; Installation
-  </a>
-  
-    <nav class="md-nav" aria-label="Build &amp; Installation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-cloning-and-preparing-the-build-directory" class="md-nav__link">
-    1. Cloning and preparing the build directory
+  <a href="#create-a-new-openfaas-profile" class="md-nav__link">
+    Create a new OpenFaaS Profile
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-building-the-core-runtime-system" class="md-nav__link">
-    2. Building the core runtime system
+  <a href="#build-an-image-classification-function-example" class="md-nav__link">
+    Build an image classification function example
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-building-the-plugins" class="md-nav__link">
-    3. Building the plugins
+  <a href="#integrate-this-operation-into-a-function-for-openfaas" class="md-nav__link">
+    Integrate this operation into a function for OpenFaaS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#virtio-plugin-building-options" class="md-nav__link">
-    VirtIO plugin building options
+  <a href="#deploy-the-function" class="md-nav__link">
+    Deploy the function
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#jetson-plugin-building-options" class="md-nav__link">
-    Jetson plugin building options
+  <a href="#consume-the-function" class="md-nav__link">
+    Consume the function
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -634,115 +606,171 @@
               
                 
                 
-                <h1 id="building-the-vaccel-runtime">Building the vAccel Runtime</h1>
-<h2 id="vaccelrt">vAccelRT</h2>
-<p>vAccel is a runtime system for hardware acceleration. It provides an API with a set of functions that the runtime is able to offload to hardware acceleration
-devices. The design of the runtime is modular, it consists of a front-end library which exposes the API to the user application and a set of back-end plugins
-that are responsible to offload computations to the accelerator.</p>
-<p>This design decouples the user application from the actual accelerator specific code. The advantage of this choice is that the application can make use of
-different hardware accelerators without extra development cost or re-compiling.</p>
-<p><a href="https://github.com/cloudkernels/vaccelrt">This</a> repo includes the core runtime system, and back-end plugins for VirtIO and the Jetson Inference framework.</p>
-<h3 id="build-installation">Build &amp; Installation</h3>
-<h4 id="1-cloning-and-preparing-the-build-directory">1. Cloning and preparing the build directory</h4>
-<pre><code class="language-zsh">~ » git clone https://github.com/cloudkernels/vaccelrt.git
+                <h1 id="use-cases">Use Cases</h1>
+<h2 id="hw-acceleration-on-serverless-deployments">HW Acceleration on Serverless deployments</h2>
+<p>Serverless Computing has gained significant ground over the past couple of
+years, especially due to its unprecedented "on-demand" computing offering at a
+fraction of the price of having a dedicated VM or bare-metal machine.</p>
+<p>However, apart from the limitation that one has to re-write its application to
+match the Serverless computing paradigm (micro-service, event triggered),
+access to "specialized" equipement is not something common / supported now.
+Major serverless offerings such as AWS Lambda, Azure functions, or Google
+Functions do not offer access to hardware acceleration for even the most common
+tasks (ML inference).</p>
+<p>To work around this issue, and study the implications of hardware acceleration
+in serverless computing we started experimenting on
+<a href="https://openfaas.com">OpenFaaS</a> and its integration with
+<a href="https://vAccel.org">vAccel</a></p>
+<p>Given OpenFaaS huge community support, installing it on a working k8s cluster is 
+a piece of cake. You can find more information in the following document:</p>
+<ul>
+<li><a href="https://docs.openfaas.com/deployment/kubernetes/">Deployment guide for Kubernetes</a></li>
+</ul>
+<p>Assuming you have a working OpenFaaS installation, leveraging the hardware
+acceleration capabilities of your cluster with vAccel should be really
+straightforward.</p>
+<h3 id="create-a-new-openfaas-profile">Create a new OpenFaaS Profile</h3>
+<p>To take advantage of vAccel on Firecracker via OpenFaaS, all you have to do, is
+tell OpenFaaS to spawn the relevant functions using a different profile. </p>
+<p>To allow maximum flexibility without overloading the OpenFaaS function
+configuration, the OpenFaaS developers have introduced the concept of Profiles.
+This is simply a reserved function annotation that the <code>faas-provider</code> can
+detect and use to apply the advanced configuration.</p>
+<p>Profiles must be pre-created, similar to Secrets, by the cluster admin. When
+installing OpenFaaS on Kubernetes, Profiles use a CRD. This must be installed
+during or prior to start the OpenFaaS controller. When using the official Helm
+chart this will happen automatically. Alternatively, you can apply <a href="https://github.com/openfaas/faas-netes/blob/master/yaml/crd.yml">this
+YAML</a> to
+install the CRD.</p>
+<p>So, let's create a hardware acceleration profile on our OpenFaaS installation!</p>
+<p>As mentioned earlier in the docs, to deploy vAccel-able workloads on a k8s
+cluster we have to follow the <a href="/k8s/kata.md">relevant instructions</a>.
+Essentially, we leverage the awesome work done by the <code>kata-containers</code> team
+and provide an alternative to the generic Firecracker <code>RuntimeClass</code>, kata-fc.</p>
+<p>So, assuming you have a working cluster with <a href="/k8s/kata.md">vAccel installed on
+k8s</a>, all you need to do to run an OpenFaaS function there is to
+create a Profile:</p>
+<pre><code>kubectl apply -f- &lt;&lt; EOF
+kind: Profile
+apiVersion: openfaas.com/v1
+metadata:
+    name: gvisor
+    namespace: openfaas
+spec:
+    runtimeClassName: kata
+EOF
+</code></pre>
+<h3 id="build-an-image-classification-function-example">Build an image classification function example</h3>
+<p>Then, we need to build a function that consumes the vAccelRT API, as exposed to
+the available functions. Check out
+<a href="https://github.com/nubificus/stdinout/tree/vaccel">this</a> repo to get an idea
+of how easy it is to create a function that classifies images ;-)</p>
+<pre><code>git clone https://github.com/nubificus/stdinout -b vaccel
+cd stdinout
+</code></pre>
+<p>Examine <code>test.c</code>: it is a simple file that gets its input from stdin, stores it
+into a memory buffer and pushes it to be classified, using the vAccel API. The
+output is a string of the classification label, along with the accuracy given
+by the specific model used. Lets build this simple function:</p>
+<pre><code>make
+</code></pre>
+<p>The output of this command is an executable that given an image from <code>STDIN</code>
+will output the classification text, consuming the vAccel API. More or less,
+something like the following:</p>
+<pre><code># Set the library path to ./ for libfileread.so and 
+# /usr/local/lib for libvaccel.so
+export LD_LIBRARY_PATH=./:/usr/local/lib
 
-Cloning into 'vaccelrt'...
-remote: Enumerating objects: 215, done.
-remote: Counting objects: 100% (215/215), done.
-remote: Compressing objects: 100% (130/130), done.
-remote: Total 215 (delta 115), reused 173 (delta 82), pack-reused 0
-Receiving objects: 100% (215/215), 101.37 KiB | 804.00 KiB/s, done.
-Resolving deltas: 100% (115/115), done.
-~ » cd vaccelrt
-~/vaccelrt(master) » mkdir build
-~/vaccelrt(master) » cd build
-~/vaccelrt/build(master) »                                                                                   
+# set the vAccel Backend (running on an RTX 2060 Super
+export VACCEL_BACKENDS=/usr/local/lib/libvaccel-jetson.so
+
+cat dog_0.jpg | ./test
 </code></pre>
-<h4 id="2-building-the-core-runtime-system">2. Building the core runtime system</h4>
-<pre><code class="language-zsh"># This sets the installation path to ${HOME}/.local
-~/vaccelrt/build(master) » cmake -DCMAKE_INSTALL_PREFIX=~/.local ..
-~/vaccelrt/build(master) » mak
-~/vaccelrt/build(master) » mak install
+<p>Given the input is the file below:</p>
+<p align="center">
+  <img src="/img/dog_0.jpg">
+</p>
+
+<p>the output should be something like the following:</p>
+<pre><code>Initialized session with id: 1
+imagenet: 60.54688% class #249 (malamute, malemute, Alaskan malamute)
+classification tags: 60.547% malamute, malemute, Alaskan malamute
 </code></pre>
-<h4 id="3-building-the-plugins">3. Building the plugins</h4>
-<p>Building the plugins is disabled, by default. You can enable building one or
-more plugins at configuration time of CMake by setting the corresponding
-variable of the following table to <code>ON</code></p>
-<table>
-<thead>
-<tr>
-<th>Backend Plugin</th>
-<th>Variable</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>virtio</td>
-<td>BUILD_PLUGIN_VIRTIO</td>
-<td><code>OFF</code></td>
-</tr>
-<tr>
-<td>jetson</td>
-<td>BUILD_PLUGIN_JETSON</td>
-<td><code>OFF</code></td>
-</tr>
-</tbody>
-</table>
-<p>For example:</p>
-<pre><code class="language-sh">cmake -DBUILD_PLUGIN_VIRTIO=ON ..
+<h3 id="integrate-this-operation-into-a-function-for-openfaas">Integrate this operation into a function for OpenFaaS</h3>
+<p>To integrate this into a function, we first need to build a container image,
+with the libvaccel library along with the vAccel-virtio backend (Since this
+workload is going to be running on a Firecracker VM ;-).</p>
+<pre><code>docker build -t nubificus/fclassify -f Dockerfile.virtio .
 </code></pre>
-<p>will enable building the virtio backend plugin.</p>
-<h4 id="virtio-plugin-building-options">VirtIO plugin building options</h4>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Values</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>VIRTIO_ACCEL_ROOT</td>
-<td>Path to virtio module installation</td>
-<td><code>/usr/local/include</code></td>
-</tr>
-</tbody>
-</table>
-<p>The VirtIO plugin uses the <a href="https://github.com/cloudkernels/virtio-accel">virtio-accel</a>
-kernel module to offload requests to the host. When building we need to point
-CMake to the location of virtio-accel installation prefix using the
-<code>VIRTIO_ACCEL_ROOT</code> variable.</p>
-<h4 id="jetson-plugin-building-options">Jetson plugin building options</h4>
-<p>The jetson inference backends depends on the Jetson inference framework, a
-corresponding CUDA installation and the STB library.</p>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Values</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CUDA_DIR</td>
-<td>Path to CUDA installation</td>
-<td><code>/usr/local/cuda/targets/x86_64-linux</code></td>
-</tr>
-<tr>
-<td>JETSON_DIR</td>
-<td>Path to Jetson installation</td>
-<td><code>/usr/local</code></td>
-</tr>
-<tr>
-<td>STB_DIR</td>
-<td>Path to STB installation</td>
-<td><code>/usr/local</code></td>
-</tr>
-</tbody>
-</table>
+<p>Then, a simple YAML like the following (<code>fclassify.yaml</code>) will instantiate a
+function that will execute the <code>fprocess:</code> directive, in our case, <code>test</code>:</p>
+<pre><code>provider:
+  name: openfaas
+  gateway: http://myclusternode:31112
+
+functions:
+  fclassify:
+    skip_build: false
+    image: nubificus/fclassify
+    fprocess: &quot;/test&quot;
+    annotations:
+      com.openfaas.profile: kata
+    labels:
+      com.openfaas.scale.min: 12
+      com.openfaas.scale.max: 100
+      com.openfaas.scale.factor: 40
+    limits:
+      cpu: 10m
+    requests:
+      cpu: 10m
+</code></pre>
+<p>The important parts to note at this YAML file are:</p>
+<pre><code>      com.openfaas.profile: kata
+</code></pre>
+<p>which makes sure that the function will be invoked on the kata profile, using
+the kata-fc RuntimeClass (which supports vAccel).</p>
+<p>and</p>
+<pre><code>    image: nubificus/fclassify
+    fprocess: &quot;/test&quot;
+</code></pre>
+<p>which denotes that the image to be used is nubificus/fclassify, built earlier
+using <code>Dockerfile.virtio</code>, with /test being the entrypoint.</p>
+<h3 id="deploy-the-function">Deploy the function</h3>
+<p>Finally, using the command below:</p>
+<pre><code>faas-cli deploy -f fclassify.yaml
+</code></pre>
+<p>will instatiate the number of replicas chosen for fclassify as well as listen
+to requests for image classification, ready to forward them to the actual
+hardware securely and efficiently!</p>
+<h3 id="consume-the-function">Consume the function</h3>
+<p>Given an ingress rule that will route traffic to the fclassify function, we can
+invoke this operation externally. For instance, given the following three
+images:</p>
+<p align="center">
+  <img src="/img/object_0.jpg" width=200px>
+  <img src="/img/object_2.jpg" width=200px>
+  <img src="/img/object_3.jpg" width=200px>
+</p>
+
+<p>we can invoke the OpenFaaS function on our local K8s OpenFaaS cluster:</p>
+<pre><code>for x in object_0.jpg object_2.jpg object_3.jpg
+do 
+  cat $x | curl -L -X POST https://openfaas.nbfc.io/function/fclassify \
+    --data-binary &quot;@$x&quot; &amp; 
+done 
+</code></pre>
+<p>and the output should be:</p>
+<pre><code>[1] 3129602
+[2] 3129604
+[3] 3129606
+
+Initialized session with id: 1
+classification tags: 23.145% mountain bike, all-terrain bike, off-roader
+Initialized session with id: 1
+classification tags: 45.776% freight car
+Initialized session with id: 1
+classification tags: 90.771% canoe
+</code></pre>
                 
               
               
@@ -761,7 +789,7 @@ corresponding CUDA installation and the STB library.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../quickstart/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../examples/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -770,25 +798,11 @@ corresponding CUDA installation and the STB library.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Quickstart
+                Examples
               </div>
             </div>
           </a>
         
-        
-          <a href="../jetson/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Jetson-inference
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>
