@@ -529,6 +529,34 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#get-the-code" class="md-nav__link">
+    Get the code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-noop-plugin" class="md-nav__link">
+    Clone the noop plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-our-helloworld-plugin" class="md-nav__link">
+    Build our helloworld plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-our-helloworld-plugin" class="md-nav__link">
+    Use our helloworld plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#takeaway" class="md-nav__link">
     Takeaway
   </a>
@@ -574,6 +602,34 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#get-the-code" class="md-nav__link">
+    Get the code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-noop-plugin" class="md-nav__link">
+    Clone the noop plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-our-helloworld-plugin" class="md-nav__link">
+    Build our helloworld plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-our-helloworld-plugin" class="md-nav__link">
+    Use our helloworld plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#takeaway" class="md-nav__link">
     Takeaway
   </a>
@@ -598,10 +654,12 @@
 the relevant frontend function and register it to the vAccel plugin subsystem.</p>
 <p>To better understand the steps, it would be useful to go through
 <a href="https://github.com/nubificus/vaccel-tutorials/blob/main/lab1/README.md">lab1</a>.</p>
+<h3 id="get-the-code">Get the code</h3>
 <p>First, lets grab the code:</p>
 <pre><code>git clone --recursive https://github.com/cloudkernels/vaccelrt
 cd vaccelrt
 </code></pre>
+<h3 id="clone-the-noop-plugin">Clone the <code>noop</code> plugin</h3>
 <p>We will use the <code>noop</code> plugin as a skeleton for our new plugin which we will
 call <code>helloworld</code>. For simplicity, we copy the <code>noop</code> plugin directory
 structure to a new directory:</p>
@@ -671,10 +729,12 @@ endif(BUILD_PLUGIN_HELLOWORLD)
 <pre><code class="language-cmake">option(BUILD_PLUGIN_HELLOWORLD &quot;Build the hello-world debugging plugin&quot; OFF)
 </code></pre>
 <p>Now we can build our new plugin, by specifying the new option we just added:</p>
+<h3 id="build-our-helloworld-plugin">Build our <code>helloworld</code> plugin</h3>
 <pre><code>cd build
 cmake ../ -DBUILD_PLUGIN_HELLOWORLD=ON
 make
 </code></pre>
+<h3 id="use-our-helloworld-plugin">Use our <code>helloworld</code> plugin</h3>
 <p>We see that a new plugin is now available, <code>libvaccel-helloworld.so</code>. Lets use this
 one instead of the <code>noop</code> one!</p>
 <pre><code>$ LD_LIBRARY_PATH=src VACCEL_DEBUG_LEVEL=4 VACCEL_BACKENDS=./plugins/helloworld/libvaccel-helloworld.so ./hello_world
