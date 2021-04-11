@@ -571,12 +571,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generic-executor" class="md-nav__link">
-    Generic executor
+  <a href="#generic-functions" class="md-nav__link">
+    Generic functions
   </a>
   
-    <nav class="md-nav" aria-label="Generic executor">
+    <nav class="md-nav" aria-label="Generic functions">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#noop" class="md-nav__link">
+    Noop
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#exec" class="md-nav__link">
@@ -695,12 +702,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generic-executor" class="md-nav__link">
-    Generic executor
+  <a href="#generic-functions" class="md-nav__link">
+    Generic functions
   </a>
   
-    <nav class="md-nav" aria-label="Generic executor">
+    <nav class="md-nav" aria-label="Generic functions">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#noop" class="md-nav__link">
+    Noop
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#exec" class="md-nav__link">
@@ -798,7 +812,14 @@ session resource (EXPERIMENTAL).</li>
 <li><code>float *b</code>: pointer to matrix B.</li>
 <li><code>float *c</code>: pointer to matrix C.</li>
 </ul>
-<h2 id="generic-executor">Generic executor</h2>
+<h2 id="generic-functions">Generic functions</h2>
+<h4 id="noop">Noop</h4>
+<pre><code class="language-C">int vaccel_noop(struct vaccel_session *sess);
+</code></pre>
+<ul>
+<li><code>struct vaccel_session *sess</code>: a pointer to a vAccel session created using
+  <code>vaccel_sess_init()</code>.</li>
+</ul>
 <h4 id="exec">Exec</h4>
 <pre><code class="language-C">int vaccel_exec(struct vaccel_session *sess, const char *library,
                 const char *fn_symbol, struct vaccel_arg *read,
